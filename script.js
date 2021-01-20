@@ -1,21 +1,16 @@
 $(function () {
-    let postIdField = document.querySelector("#postId");
-    let titleSection = document.querySelector("#title");
-    let contentSection = document.querySelector("#content");
-    let submitButton = document.querySelector("#submit");
-
     let postId;
     const baseURL = "https://jsonplaceholder.typicode.com/posts/";
 
+    $('#submit').click(getPost);
+
     function getPost() {
-        postId = postIdField.value;
+        postId = $('#postId').val();
+
         let endpoint = baseURL + postId;
-
         $.getJSON(endpoint, function (data) {
-            titleSection.innerHTML = data.title;
-            contentSection.innerHTML = data.body;
-        });
+            $('#title').text(data.title);
+            $('#content').text(data.body);
+        }).fail(function() { alert("Post not found!"); });
     };
-
-    submitButton.addEventListener('click', getPost);
 });
