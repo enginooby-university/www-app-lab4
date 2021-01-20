@@ -11,6 +11,8 @@ $(function () {
         $.getJSON(endpoint, function (data) {
             $('#title').text(data.title);
             $('#content').text(data.body);
-        }).fail(function() { alert("Post not found!"); });
+            $('#postId').val("");
+        })
+        .fail(function() { alert("Post not found!"); });
     };
 });
